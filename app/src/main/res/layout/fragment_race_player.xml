@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+         <ImageView
+             android:id="@+id/btnBack"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@drawable/icon_back"
+             android:layout_margin="10dp"/>
+
+         <TextView
+             android:id="@+id/tvNameCar"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="1 . Toyota Vioss"
+             android:textColor="@color/black"
+             android:textStyle="bold"
+             android:textSize="20dp"
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="20dp"/>
+         <TextView
+             android:id="@+id/tvTime"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="0:00:00"
+             android:textSize="60dp"
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="150dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp">
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="Start"
+                android:textAllCaps="false"
+                android:background="@drawable/custom_button_signout"
+                android:textColor="@color/white"
+                android:layout_margin="5dp"
+                android:textSize="18dp"/>
+            <ImageButton
+                android:id="@+id/btnResume"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_play"
+                android:textAllCaps="false"
+                android:background="@drawable/custom_button_signout_3"
+                android:textColor="@color/white"
+                android:layout_margin="5dp" />
+            <Button
+                android:id="@+id/btnStop"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="Stop"
+                android:textAllCaps="false"
+                android:background="@drawable/custom_button_signout_2"
+                android:textColor="@color/white"
+                android:layout_margin="5dp"
+                android:textSize="18dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

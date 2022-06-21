@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_btn_create_race.xml" value="0.1445" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_btn_create_race_1.xml" value="0.1375" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_btn_create_race_2.xml" value="0.1" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_button_login.xml" value="0.183" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_button_signout.xml" value="0.1515" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_button_signout_2.xml" value="0.1265" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_button_signout_3.xml" value="0.1265" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_edittext_email_icon.xml" value="0.183" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_input_login.xml" value="0.183" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_login_view.xml" value="0.154" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/ic_car_24.xml" value="0.1375" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/icon_login_account.xml" value="0.183" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/icon_login_account_focus.xml" value="0.121" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/icon_login_name.xml" value="0.154" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/icon_login_password.xml" value="0.183" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/profile_custom_avatar.xml" value="0.154" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/activity_log_in.xml" value="0.2359375" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/activity_main.xml" value="0.24139492753623187" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/activity_main2.xml" value="0.25" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_create_race.xml" value="0.264" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_log_in.xml" value="0.24094202898550723" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_race.xml" value="0.16" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_race_information.xml" value="0.2" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_race_player.xml" value="0.24230072463768115" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_signup.xml" value="0.24094202898550723" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_user.xml" value="0.24139492753623187" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/item_car.xml" value="0.2" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/item_user.xml" value="0.24139492753623187" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/menu/menu_bottom_nav.xml" value="0.3625" />
+        <entry key="..\:/Users/B5-BHSOFT-CUONG/Desktop/BHSOFT/BaseMVP/app/src/main/res/layout/activity_main.xml" value="0.17604166666666668" />
+        <entry key="..\:/Users/B5-BHSOFT-CUONG/Desktop/BHSOFT/BaseMVP/app/src/main/res/layout/fragment_user.xml" value="0.2" />
+        <entry key="..\:/Users/B5-BHSOFT-CUONG/Desktop/BHSOFT/BaseMVP/app/src/main/res/layout/item_user.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

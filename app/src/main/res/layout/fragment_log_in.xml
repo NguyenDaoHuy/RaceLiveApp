@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/custom_login_view">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="serif-monospace"
+                    android:text="RecaLiveApp LogIn"
+                    android:textColor="#554B4B"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/editTextAccount"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:drawableLeft="@drawable/icon_login_account"
+                android:textColorHighlight="@color/black"
+                android:textColorHint="#7C000000"
+                android:textSize="20dp"
+                android:drawablePadding="15dp"
+                android:drawableStart="@drawable/custom_edittext_email_icon"
+                android:textColor="@color/black"
+                android:fontFamily="monospace"
+                android:hint="Email"
+                android:background="@drawable/custom_input_login"
+                android:padding="12dp"/>
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:drawableLeft="@drawable/icon_login_password"
+                android:textColorHighlight="@color/black"
+                android:textColorHint="#7C000000"
+                android:textSize="20dp"
+                android:inputType="textPassword"
+                android:drawablePadding="15dp"
+                android:textColor="@color/black"
+                android:fontFamily="monospace"
+                android:hint="Password"
+                android:background="@drawable/custom_input_login"
+                android:padding="12dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp">
+                <CheckBox
+                    android:id="@+id/cbSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save Information"
+                    android:layout_toEndOf="@+id/cbSave"
+                    android:layout_centerVertical="true"
+                    android:textSize="16dp"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tvThongBaoDangNhap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="18dp"
+                    android:textColor="#EC4444"
+                    android:fontFamily="sans-serif-condensed-medium"/>
+                <RelativeLayout
+                    android:layout_below="@+id/tvThongBaoDangNhap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
+
+                    <Button
+                        android:id="@+id/btnRegister"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:background="@drawable/custom_button_login"
+                        android:fontFamily="monospace"
+                        android:text="Register"
+                        android:textAllCaps="false"
+                        android:textStyle="bold" />
+                    <Button
+                        android:id="@+id/btnLogin"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:text="Log In"
+                        android:layout_toEndOf="@+id/btnRegister"
+                        android:textStyle="bold"
+                        android:fontFamily="monospace"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/custom_button_login"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+</layout>
