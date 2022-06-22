@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.ActivityMainBinding;
 import com.cuongpq.basemvp.view.base.activity.BaseActivity;
+import com.cuongpq.basemvp.view.ui.fragment.listRace.list.ListRaceFragment;
 import com.cuongpq.basemvp.view.ui.fragment.profile.ProfileFragment;
 import com.cuongpq.basemvp.view.ui.fragment.race.racedetail.RaceFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,7 +49,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                       binding.bottomNav.getMenu().findItem(R.id.createRace).setChecked(true);
                       break;
                   case  R.id.listRace :
-                      Toast.makeText(getApplicationContext(),"Hi",Toast.LENGTH_SHORT).show();
+                      ListRaceFragment listRaceFragment = new ListRaceFragment();
+                      getFragment(listRaceFragment);
                       binding.bottomNav.getMenu().findItem(R.id.listRace).setChecked(true);
                       break;
                   case  R.id.proFile :
