@@ -13,6 +13,25 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"/>
         <EditText
+            android:id="@+id/edRaceID"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:drawableLeft="@drawable/icon_login_name"
+            android:textColorHighlight="@color/black"
+            android:textColorHint="#7C000000"
+            android:textSize="20dp"
+            android:drawablePadding="15dp"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+            android:hint="ID Race"
+            android:inputType="number"
+            android:background="@drawable/custom_input_login"
+            android:padding="12dp"/>
+        <EditText
             android:id="@+id/edRaceName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -49,101 +68,6 @@
                 android:text="16/06/2022"
                 android:layout_marginLeft="10dp"/>
         </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_btn_create_race"
-            android:layout_margin="15dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                android:orientation="vertical"
-                android:background="@color/white">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp">
-                    <TextView
-                        android:id="@+id/hihi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Add Car "
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
-                        android:textSize="22dp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/sttCar"
-                        android:text="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
-                        android:layout_toEndOf="@+id/hihi"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-
-                <EditText
-                    android:id="@+id/edCarID"
-                    android:inputType="number"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="15dp"
-                    android:drawableLeft="@drawable/ic_car_24"
-                    android:textColorHighlight="@color/black"
-                    android:textColorHint="#7C000000"
-                    android:textSize="20dp"
-                    android:drawablePadding="15dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="monospace"
-                    android:hint="Car ID"
-                    android:background="@drawable/custom_input_login"
-                    android:padding="12dp"/>
-                <EditText
-                    android:id="@+id/edCarName"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="15dp"
-                    android:drawableLeft="@drawable/ic_car_24"
-                    android:textColorHighlight="@color/black"
-                    android:textColorHint="#7C000000"
-                    android:textSize="20dp"
-                    android:drawablePadding="15dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="monospace"
-                    android:hint="Car Name"
-                    android:background="@drawable/custom_input_login"
-                    android:padding="12dp"/>
-                <EditText
-                    android:id="@+id/edRacer"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="15dp"
-                    android:drawableLeft="@drawable/icon_login_name"
-                    android:textColorHighlight="@color/black"
-                    android:textColorHint="#7C000000"
-                    android:textSize="20dp"
-                    android:drawablePadding="15dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="monospace"
-                    android:hint="Racer Name"
-                    android:background="@drawable/custom_input_login"
-                    android:padding="12dp"/>
-                <Button
-                    android:id="@+id/btnAddCar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ADD"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:background="@drawable/custom_btn_create_race_1"/>
-            </LinearLayout>
-        </LinearLayout>
         <Button
             android:id="@+id/btnCreate"
             android:layout_width="match_parent"
@@ -154,7 +78,9 @@
             android:background="@drawable/custom_btn_create_race_2"
             android:textColor="@color/white"
             android:textSize="25dp"
-            android:layout_margin="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="50dp"
             android:padding="15dp"/>
     </LinearLayout>
 </layout>

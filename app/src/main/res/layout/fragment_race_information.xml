@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="100dp"
+            android:id="@+id/haha">
             <TextView
                 android:id="@+id/tvRaceName"
                 android:layout_width="wrap_content"
@@ -26,10 +26,35 @@
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/tvRaceName"/>
         </RelativeLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCar"
+        <RelativeLayout
+            android:layout_below="@+id/haha"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"/>
-    </LinearLayout>
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+            <ImageButton
+                android:id="@+id/btnAdd"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/custom_button_signout"
+                android:src="@drawable/ic_add_24"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tvThongBaoSLXe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not car !"
+            android:layout_centerInParent="true"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="#B3B1B1"/>
+    </RelativeLayout>
 </layout>

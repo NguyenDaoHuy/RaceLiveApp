@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cuongpq.basemvp.databinding.ItemCarBinding;
 import com.cuongpq.basemvp.model.Car;
-
 public class AdapterListCar extends RecyclerView.Adapter<AdapterListCar.ViewHolder> {
     private ICar inter;
 

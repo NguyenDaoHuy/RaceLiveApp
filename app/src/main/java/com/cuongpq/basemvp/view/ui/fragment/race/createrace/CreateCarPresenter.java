@@ -1,8 +1,13 @@
 package com.cuongpq.basemvp.view.ui.fragment.race.createrace;
 
+import android.database.Cursor;
+
 import com.cuongpq.basemvp.model.Car;
 import com.cuongpq.basemvp.model.Race;
+import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
 import com.cuongpq.basemvp.view.base.presenter.BasePresenter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,10 +16,12 @@ import java.util.Date;
 
 public class CreateCarPresenter extends BasePresenter implements ICreateRacePresenter {
      private ICreateRaceView view;
-     private ArrayList<Car> carList;
      private ArrayList<Race> raceArrayList;
      private String dat;
      private Race race;
+     private SQLiteHelper sqLiteHelper;
+     private String idAcount;
+     private FirebaseUser firebaseUser;
 
     public CreateCarPresenter(ICreateRaceView view) {
         this.view = view;
@@ -22,30 +29,27 @@ public class CreateCarPresenter extends BasePresenter implements ICreateRacePres
 
     @Override
     public void initPresenter() {
-        carList = new ArrayList<>();
         raceArrayList = new ArrayList<>();
         view.onClickListener();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        idAcount = firebaseUser.getUid();
         getDay();
     }
 
     @Override
-    public void addListCar(String id,String name,String racer){
-        if( id.isEmpty()|| name.isEmpty() || racer.isEmpty()){
-            view.createToast("Empty information");
-        }else {
-            carList.add(new Car(id,name,racer,0));
-            view.setSTTCar();
-            view.createToast("Add Car Success");
+    public void createRace(int idRace,String nameRace) {
+        sqLiteHelper = new SQLiteHelper(view.getActivityCreateRace(), "Data.sqlite", null, 5);
+        race = new Race(idRace, nameRace, dat);
+        raceArrayList.add(race);
+        Cursor cursor = sqLiteHelper.GetData("SELECT * FROM Race1 WHERE IdAcount = '" + idAcount + "' AND IdRace = '" + idRace + "'");
+        if (cursor.getCount() <= 0) {
+            sqLiteHelper.QueryData("INSERT INTO Race1 VALUES(null,'" + idAcount + "','" + idRace + "','" + nameRace + "','" + dat + "')");
+            view.createToast("Create Race Success");
+            view.createRaceSuccess();
+        } else {
+            view.createToast("Already Exist");
         }
     }
-
-    @Override
-    public void createRace(String nameRace) {
-             race = new Race(nameRace,dat,carList);
-             raceArrayList.add(race);
-             view.createToast("Create Race Success");
-    }
-
     @Override
     public void getDay() {
         Calendar calendar = Calendar.getInstance();
@@ -58,11 +62,6 @@ public class CreateCarPresenter extends BasePresenter implements ICreateRacePres
     @Override
     public Race getRace() {
         return race;
-    }
-
-    @Override
-    public ArrayList<Car> getListCar() {
-        return carList;
     }
 
 }

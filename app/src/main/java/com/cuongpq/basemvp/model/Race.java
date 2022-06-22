@@ -4,16 +4,25 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Race implements Serializable{
+    private int idRace;
     private String nameRace;
     private String date;
-    private ArrayList<Car> cars;
+
 
     public Race(){}
 
-    public Race(String nameRace, String date, ArrayList<Car> cars) {
+    public Race(int idRace, String nameRace, String date) {
+        this.idRace = idRace;
         this.nameRace = nameRace;
         this.date = date;
-        this.cars = cars;
+    }
+
+    public int getIdRace() {
+        return idRace;
+    }
+
+    public void setIdRace(int idRace) {
+        this.idRace = idRace;
     }
 
     public String getNameRace() {
@@ -30,13 +39,5 @@ public class Race implements Serializable{
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public ArrayList<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(ArrayList<Car> cars) {
-        this.cars = cars;
     }
 }
