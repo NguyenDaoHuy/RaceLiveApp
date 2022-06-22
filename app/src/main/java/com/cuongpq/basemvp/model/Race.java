@@ -1,7 +1,6 @@
 package com.cuongpq.basemvp.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Race implements Serializable{
     private int idRace;
@@ -20,24 +19,12 @@ public class Race implements Serializable{
     public int getIdRace() {
         return idRace;
     }
-
-    public void setIdRace(int idRace) {
-        this.idRace = idRace;
-    }
-
     public String getNameRace() {
         return nameRace;
-    }
-
-    public void setNameRace(String nameRace) {
-        this.nameRace = nameRace;
     }
 
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 }

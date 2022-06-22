@@ -1,7 +1,6 @@
 package com.cuongpq.basemvp.view.ui.fragment.listRace.list;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,7 @@ import com.cuongpq.basemvp.model.Race;
 
 public class ListRaceAdapter extends RecyclerView.Adapter<ListRaceAdapter.ViewHolder> {
 
-    private IRace inter;
+    private final IRace inter;
 
     public ListRaceAdapter(IRace inter) {
         this.inter = inter;
@@ -44,7 +43,7 @@ public class ListRaceAdapter extends RecyclerView.Adapter<ListRaceAdapter.ViewHo
         void onClickItem(int position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         ItemRaceBinding binding;
         public ViewHolder(@NonNull ItemRaceBinding binding) {
             super(binding.getRoot());

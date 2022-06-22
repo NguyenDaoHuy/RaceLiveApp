@@ -4,27 +4,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
+            android:id="@+id/haha"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/haha">
+            android:layout_height="100dp">
+
             <TextView
                 android:id="@+id/tvRaceName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cuộc đua kì thú"
-                android:textSize="32dp"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:textColor="#1B1A1A"
                 android:layout_centerInParent="true"
                 android:layout_marginRight="20dp"
-                android:textStyle="bold"/>
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Cuộc đua kì thú"
+                android:textColor="#1B1A1A"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/logo_create_race"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/tvRaceName"/>
+                android:layout_toEndOf="@+id/tvRaceName"
+                android:src="@drawable/logo_create_race" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_below="@+id/haha"
@@ -37,6 +40,22 @@
                 android:layout_marginBottom="100dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
+            <Button
+                android:id="@+id/btnRunning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/custom_button_started"
+                android:text="Running"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:layout_alignParentBottom="true"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginBottom="36dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="80dp"
+                android:textStyle="bold"/>
             <ImageButton
                 android:id="@+id/btnAdd"
                 android:layout_width="60dp"
@@ -44,7 +63,7 @@
                 android:background="@drawable/custom_button_signout"
                 android:src="@drawable/ic_add_24"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="80dp"
                 android:layout_marginBottom="30dp"/>
         </RelativeLayout>
         <TextView

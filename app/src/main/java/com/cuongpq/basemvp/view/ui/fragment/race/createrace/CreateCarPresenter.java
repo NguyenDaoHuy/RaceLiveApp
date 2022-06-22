@@ -2,7 +2,6 @@ package com.cuongpq.basemvp.view.ui.fragment.race.createrace;
 
 import android.database.Cursor;
 
-import com.cuongpq.basemvp.model.Car;
 import com.cuongpq.basemvp.model.Race;
 import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
 import com.cuongpq.basemvp.view.base.presenter.BasePresenter;
@@ -15,13 +14,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CreateCarPresenter extends BasePresenter implements ICreateRacePresenter {
-     private ICreateRaceView view;
+     private final ICreateRaceView view;
      private ArrayList<Race> raceArrayList;
      private String dat;
      private Race race;
-     private SQLiteHelper sqLiteHelper;
-     private String idAcount;
-     private FirebaseUser firebaseUser;
+    private String idAcount;
 
     public CreateCarPresenter(ICreateRaceView view) {
         this.view = view;
@@ -31,14 +28,14 @@ public class CreateCarPresenter extends BasePresenter implements ICreateRacePres
     public void initPresenter() {
         raceArrayList = new ArrayList<>();
         view.onClickListener();
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idAcount = firebaseUser.getUid();
         getDay();
     }
 
     @Override
     public void createRace(int idRace,String nameRace) {
-        sqLiteHelper = new SQLiteHelper(view.getActivityCreateRace(), "Data.sqlite", null, 5);
+        SQLiteHelper sqLiteHelper = new SQLiteHelper(view.getActivityCreateRace(), "Data.sqlite", null, 5);
         race = new Race(idRace, nameRace, dat);
         raceArrayList.add(race);
         Cursor cursor = sqLiteHelper.GetData("SELECT * FROM Race1 WHERE IdAcount = '" + idAcount + "' AND IdRace = '" + idRace + "'");

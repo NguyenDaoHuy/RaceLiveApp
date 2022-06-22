@@ -6,10 +6,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AddCarPresenter extends BasePresenter implements IAddCarPresenter{
-    private IAddCarView view;
-    private SQLiteHelper sqLiteHelper;
+    private final IAddCarView view;
     private String idAcount;
-    private FirebaseUser firebaseUser;
+
     public AddCarPresenter(IAddCarView view) {
         this.view = view;
     }
@@ -17,7 +16,7 @@ public class AddCarPresenter extends BasePresenter implements IAddCarPresenter{
     @Override
     public void initPresenter() {
         view.onClickListener();
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idAcount = firebaseUser.getUid();
     }
 
@@ -26,8 +25,8 @@ public class AddCarPresenter extends BasePresenter implements IAddCarPresenter{
         if(nameCar == "" || racer == ""){
             view.createToast("Empty information");
         }else {
-            sqLiteHelper = new SQLiteHelper(view.getActivityAddCar(),"Data.sqlite",null,5);
-            sqLiteHelper.QueryData("INSERT INTO Car VALUES(null,'"+idAcount+"','"+idRace+"','"+idCar+"','"+nameCar+"','"+racer+"','0')");
+            SQLiteHelper sqLiteHelper = new SQLiteHelper(view.getActivityAddCar(), "Data.sqlite", null, 5);
+            sqLiteHelper.QueryData("INSERT INTO Car1 VALUES(null,'"+idAcount+"','"+idRace+"','"+idCar+"','"+nameCar+"','"+racer+"','0',null,null,null,null,null,null,null,null)");
             view.addSuccess();
             view.createToast("Add Car Success");
         }

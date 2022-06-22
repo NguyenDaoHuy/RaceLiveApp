@@ -1,11 +1,9 @@
 package com.cuongpq.basemvp.view.ui.activity.login.signup;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.view.View;
 import android.widget.Toast;
-
 import androidx.fragment.app.FragmentTransaction;
-
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.FragmentSignupBinding;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
@@ -28,33 +26,28 @@ public class SignupFragment extends BaseFragmentMvp<FragmentSignupBinding,SignUp
         return R.layout.fragment_signup;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClickListener() {
-        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                email = binding.edAccount.getText().toString().trim();
-                password = binding.edPassword.getText().toString().trim();
-                passwordConfirm = binding.cfPassword.getText().toString().trim();
-                nameUser = binding.edUserName.getText().toString().trim();
-                if(email.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty() || nameUser.isEmpty()){
-                    binding.tvThongBaoDangKi.setText("Empty information");
-                }else if(password.length() < 6){
-                    binding.tvThongBaoDangKi.setText("Password is short");
-                }else if(!password.equals(passwordConfirm)){
-                    binding.tvThongBaoDangKi.setText("Password Incorrect");
-                }else {
-                    presenter.onSignUp(email,password);
-                }
+        binding.btnRegister.setOnClickListener(v -> {
+            email = binding.edAccount.getText().toString().trim();
+            password = binding.edPassword.getText().toString().trim();
+            passwordConfirm = binding.cfPassword.getText().toString().trim();
+            nameUser = binding.edUserName.getText().toString().trim();
+            if(email.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty() || nameUser.isEmpty()){
+                binding.tvThongBaoDangKi.setText("Empty information");
+            }else if(password.length() < 6){
+                binding.tvThongBaoDangKi.setText("Password is short");
+            }else if(!password.equals(passwordConfirm)){
+                binding.tvThongBaoDangKi.setText("Password Incorrect");
+            }else {
+                presenter.onSignUp(email,password);
             }
         });
 
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getFragmentManager() != null){
-                    getFragmentManager().popBackStack();
-                }
+        binding.btnBack.setOnClickListener(v -> {
+            if(getFragmentManager() != null){
+                getFragmentManager().popBackStack();
             }
         });
     }

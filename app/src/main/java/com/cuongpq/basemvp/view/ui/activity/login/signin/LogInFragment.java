@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.view.View;
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.FragmentLogInBinding;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
@@ -14,7 +13,7 @@ import com.cuongpq.basemvp.view.ui.activity.main.MainActivity;
 
 public class LogInFragment extends BaseFragmentMvp<FragmentLogInBinding,LogInPresenter>
         implements ILogInView{
-    private String saveInformation = "tk_mk";
+    private final String saveInformation = "tk_mk";
 
     @Override
     public int getMainLayout() {
@@ -32,22 +31,14 @@ public class LogInFragment extends BaseFragmentMvp<FragmentLogInBinding,LogInPre
 
     @Override
     public void onClickListener() {
-        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .add(R.id.fragmentLogin,new SignupFragment(),SignupFragment.class.getName())
-                        .addToBackStack(SignupFragment.class.getName())
-                        .commit();
-            }
-        });
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = binding.editTextAccount.getText().toString().trim();
-                String password = binding.editTextPassword.getText().toString().trim();
-                presenter.checkLogIn(email,password);
-            }
+        binding.btnRegister.setOnClickListener(v -> getActivity().getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragmentLogin,new SignupFragment(),SignupFragment.class.getName())
+                .addToBackStack(SignupFragment.class.getName())
+                .commit());
+        binding.btnLogin.setOnClickListener(v -> {
+            String email = binding.editTextAccount.getText().toString().trim();
+            String password = binding.editTextPassword.getText().toString().trim();
+            presenter.checkLogIn(email,password);
         });
 
     }
@@ -87,7 +78,7 @@ public class LogInFragment extends BaseFragmentMvp<FragmentLogInBinding,LogInPre
         editor.putString("Email",binding.editTextAccount.getText().toString().trim());
         editor.putString("Password",binding.editTextPassword.getText().toString().trim());
         editor.putBoolean("Save",binding.cbSave.isChecked());
-        editor.commit();
+        editor.apply();
     }
 
     @Override
@@ -97,7 +88,7 @@ public class LogInFragment extends BaseFragmentMvp<FragmentLogInBinding,LogInPre
         String emailResume = sharedPreferences.getString("Email","");
         String passwordResume = sharedPreferences.getString("Password","");
         boolean save = sharedPreferences.getBoolean("Save",false);
-        if(save == true){
+        if(save){
             binding.editTextAccount.setText(emailResume);
             binding.editTextPassword.setText(passwordResume);
             binding.cbSave.setChecked(true);

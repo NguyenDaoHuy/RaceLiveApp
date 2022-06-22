@@ -1,5 +1,6 @@
 package com.cuongpq.basemvp.view.ui.fragment.race.raceinfor;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -8,7 +9,7 @@ import com.cuongpq.basemvp.databinding.ItemCarBinding;
 import com.cuongpq.basemvp.model.Car;
 
 public class AdapterListCar extends RecyclerView.Adapter<AdapterListCar.ViewHolder> {
-    private ICar inter;
+    private final ICar inter;
 
     public AdapterListCar(ICar inter) {
         this.inter = inter;
@@ -21,6 +22,7 @@ public class AdapterListCar extends RecyclerView.Adapter<AdapterListCar.ViewHold
         return new ViewHolder(binding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
          Car car = inter.getCar(position);
@@ -42,7 +44,7 @@ public class AdapterListCar extends RecyclerView.Adapter<AdapterListCar.ViewHold
         void onClickStart(int position);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder{
         ItemCarBinding binding;
         public ViewHolder(@NonNull ItemCarBinding binding) {
             super(binding.getRoot());

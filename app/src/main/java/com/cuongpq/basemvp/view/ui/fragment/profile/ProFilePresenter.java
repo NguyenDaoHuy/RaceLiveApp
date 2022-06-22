@@ -4,7 +4,7 @@ import com.cuongpq.basemvp.view.base.presenter.BasePresenter;
 
 public class ProFilePresenter extends BasePresenter implements IProfilePresenter {
 
-    private IProfileView view;
+    private final IProfileView view;
 
     public ProFilePresenter(IProfileView view) {
         this.view = view;

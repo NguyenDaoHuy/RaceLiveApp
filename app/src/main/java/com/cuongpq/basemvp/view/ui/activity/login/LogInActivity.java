@@ -16,8 +16,26 @@ public class LogInActivity extends BaseActivity<ActivityLogInBinding> {
                 .addToBackStack(null)
                 .commit();
         sqLiteHelper = new SQLiteHelper(this,"Data.sqlite",null,5);
-        sqLiteHelper.QueryData("CREATE TABLE IF NOT EXISTS Race1(Id INTEGER PRIMARY KEY AUTOINCREMENT,IdAcount VARCHAR(100),IdRace INTEGER,NameRace NVARCHAR(100),Date VARCHAR(50))");
-        sqLiteHelper.QueryData("CREATE TABLE IF NOT EXISTS Car(Id INTEGER PRIMARY KEY AUTOINCREMENT,IdAcount VARCHAR(100),IdRace INTEGER,IdCar INTEGER,NameCar NVARCHAR(100),Racer NVARCHAR(100),Level INTEGER)");
+        sqLiteHelper.QueryData("CREATE TABLE IF NOT EXISTS Race1(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "IdAcount VARCHAR(100)," +
+                "IdRace INTEGER," +
+                "NameRace NVARCHAR(100)," +
+                "Date VARCHAR(50))");
+        sqLiteHelper.QueryData("CREATE TABLE IF NOT EXISTS Car1(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "IdAcount VARCHAR(100)," +
+                "IdRace INTEGER," +
+                "IdCar INTEGER," +
+                "NameCar NVARCHAR(100)," +
+                "Racer NVARCHAR(100)," +
+                "Level INTEGER," +
+                "Start VARCHAR(50)," +
+                "SS1 VARCHAR(50)," +
+                "SS2 VARCHAR(50)," +
+                "SS3 VARCHAR(50)," +
+                "SS4 VARCHAR(50)," +
+                "SS5 VARCHAR(50)," +
+                "SS6 VARCHAR(50)," +
+                "Stop VARCHAR(50))");
     }
 
 

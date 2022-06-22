@@ -6,10 +6,12 @@
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_btn_create_race.xml" value="0.1445" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_btn_create_race_1.xml" value="0.1375" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_btn_create_race_2.xml" value="0.1" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_btn_create_race_3.xml" value="0.2265" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_button_login.xml" value="0.183" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_button_signout.xml" value="0.1515" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_button_signout_2.xml" value="0.1265" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_button_signout_3.xml" value="0.1265" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_button_started.xml" value="0.1495" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_edittext_email_icon.xml" value="0.183" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_input_login.xml" value="0.183" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/drawable/custom_login_view.xml" value="0.154" />
@@ -23,6 +25,7 @@
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/activity_main.xml" value="0.24139492753623187" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/activity_main2.xml" value="0.25" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_add_car.xml" value="0.2427536231884058" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_car_information.xml" value="0.3625" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_create_race.xml" value="0.264" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_list_race.xml" value="0.2346014492753623" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_log_in.xml" value="0.24094202898550723" />
@@ -30,9 +33,11 @@
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_race.xml" value="0.16" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_race_information.xml" value="0.2" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_race_player.xml" value="0.24230072463768115" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_race_playing.xml" value="0.3625" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_signup.xml" value="0.24094202898550723" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/fragment_user.xml" value="0.24139492753623187" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/item_car.xml" value="0.2" />
+        <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/item_car_playing.xml" value="0.25" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/item_race.xml" value="0.23731884057971014" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/layout/item_user.xml" value="0.24139492753623187" />
         <entry key="..\:/CongTy/raceliveapphuyndq-main/BaseMVP/app/src/main/res/menu/menu_bottom_nav.xml" value="0.3625" />

@@ -2,7 +2,6 @@ package com.cuongpq.basemvp.view.ui.fragment.listRace.list;
 
 import android.database.Cursor;
 
-import com.cuongpq.basemvp.model.Car;
 import com.cuongpq.basemvp.model.Race;
 import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
 import com.cuongpq.basemvp.view.base.presenter.BasePresenter;
@@ -12,11 +11,8 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 public class ListCarPresenter extends BasePresenter implements IListCarPresenter{
-    private IListRaceView view;
+    private final IListRaceView view;
     private ArrayList<Race> raceArrayList;
-    private FirebaseUser firebaseUser;
-    private SQLiteHelper sqLiteHelper;
-    private String idAcount;
 
     public ListCarPresenter(IListRaceView view) {
         this.view = view;
@@ -30,10 +26,10 @@ public class ListCarPresenter extends BasePresenter implements IListCarPresenter
 
     @Override
     public void getDataRace() {
-        sqLiteHelper = new SQLiteHelper(view.getActivityListRace(),"Data.sqlite",null,5);
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        idAcount = firebaseUser.getUid();
-        Cursor data = sqLiteHelper.GetData("SELECT * FROM Race1 WHERE IdAcount = '"+idAcount+"'");
+        SQLiteHelper sqLiteHelper = new SQLiteHelper(view.getActivityListRace(), "Data.sqlite", null, 5);
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String idAcount = firebaseUser.getUid();
+        Cursor data = sqLiteHelper.GetData("SELECT * FROM Race1 WHERE IdAcount = '"+ idAcount +"'");
         while(data.moveToNext()){
                   int id = data.getInt(2);
                   String name = data.getString(3);

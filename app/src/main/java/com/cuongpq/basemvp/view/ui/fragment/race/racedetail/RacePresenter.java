@@ -3,7 +3,7 @@ package com.cuongpq.basemvp.view.ui.fragment.race.racedetail;
 import com.cuongpq.basemvp.view.base.presenter.BasePresenter;
 
 public class RacePresenter extends BasePresenter implements IRacePresenter {
-    private IRaceView view;
+    private final IRaceView view;
 
     public RacePresenter(IRaceView view) {
         this.view = view;

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/custom_btn_create_race">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/nameCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:text="1. Xe của Huy"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/nameRacer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Racer : Huy Tu"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_below="@+id/nameCar"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/btnGo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/custom_button_signout_3"
+                android:text="Go"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start : 12:34:56 AM"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/black"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"/>
+            <TextView
+                android:id="@+id/tvLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SS1"
+                android:layout_toEndOf="@+id/tvStartTime"
+                android:layout_marginStart="50dp"
+                android:textColor="@color/black"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

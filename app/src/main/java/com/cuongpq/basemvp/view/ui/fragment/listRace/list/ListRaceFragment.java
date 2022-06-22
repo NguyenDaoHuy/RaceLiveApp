@@ -10,14 +10,12 @@ import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.FragmentListRaceBinding;
 import com.cuongpq.basemvp.model.Race;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
-import com.cuongpq.basemvp.view.ui.fragment.race.raceinfor.AdapterListCar;
 import com.cuongpq.basemvp.view.ui.fragment.race.raceinfor.RaceInformationFragment;
 
 
 public class ListRaceFragment extends BaseFragmentMvp<FragmentListRaceBinding,ListCarPresenter>
       implements IListRaceView, ListRaceAdapter.IRace {
 
-    private ListRaceAdapter adapter;
     @Override
     protected void initView() {
         super.initView();
@@ -38,7 +36,7 @@ public class ListRaceFragment extends BaseFragmentMvp<FragmentListRaceBinding,Li
 
     @Override
     public void initRecyclerView() {
-        adapter = new ListRaceAdapter(this);
+        ListRaceAdapter adapter = new ListRaceAdapter(this);
         binding.rvRace.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.rvRace.setAdapter(adapter);
     }
@@ -66,6 +64,7 @@ public class ListRaceFragment extends BaseFragmentMvp<FragmentListRaceBinding,Li
         raceInformationFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content, raceInformationFragment);
+        fragmentTransaction.addToBackStack(RaceInformationFragment.TAG);
         fragmentTransaction.commit();
     }
 }

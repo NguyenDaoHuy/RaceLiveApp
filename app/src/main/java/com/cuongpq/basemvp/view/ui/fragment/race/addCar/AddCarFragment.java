@@ -1,15 +1,11 @@
 package com.cuongpq.basemvp.view.ui.fragment.race.addCar;
 
 import android.app.Activity;
-import android.view.View;
 import android.widget.Toast;
-
-import androidx.fragment.app.Fragment;
 
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.FragmentAddCarBinding;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
-import com.cuongpq.basemvp.view.ui.fragment.race.racePlayer.RacePlayerFragment;
 
 
 public class AddCarFragment extends BaseFragmentMvp<FragmentAddCarBinding,AddCarPresenter>
@@ -33,27 +29,21 @@ public class AddCarFragment extends BaseFragmentMvp<FragmentAddCarBinding,AddCar
 
     @Override
     public void onClickListener() {
-          binding.btnBack.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  if(getFragmentManager() != null){
-                      getFragmentManager().popBackStack();
-                  }
+          binding.btnBack.setOnClickListener(v -> {
+              if(getFragmentManager() != null){
+                  getFragmentManager().popBackStack();
               }
           });
-          binding.btnAddCar.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                   String strIdCar = binding.edCarID.getText().toString();
-                   int idCar = Integer.parseInt(strIdCar);
-                   String nameCar = binding.edCarName.getText().toString();
-                   String racer = binding.edRacer.getText().toString();
-                   if(strIdCar == ""){
-                       createToast("Empty Information");
-                   }else {
-                       presenter.addCar(idCar,nameCar,racer,idRace);
-                   }
-              }
+          binding.btnAddCar.setOnClickListener(v -> {
+               String strIdCar = binding.edCarID.getText().toString();
+               int idCar = Integer.parseInt(strIdCar);
+               String nameCar = binding.edCarName.getText().toString();
+               String racer = binding.edRacer.getText().toString();
+               if(strIdCar == ""){
+                   createToast("Empty Information");
+               }else {
+                   presenter.addCar(idCar,nameCar,racer,idRace);
+               }
           });
     }
 

@@ -1,9 +1,8 @@
 package com.cuongpq.basemvp.view.ui.fragment.profile;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.View;
+
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.FragmentProfileBinding;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
@@ -27,29 +26,20 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
 
     @Override
     public void onClickListener() {
-        binding.btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog alertDialog=new AlertDialog.Builder(getContext())
-                        .setTitle("Xác nhận đăng xuất")
-                        .setMessage("Bạn có chắc chắn đăng xuất không ?")
-                        .setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                FirebaseAuth.getInstance().signOut();
-                                Intent intent = new Intent(getContext(), LogInActivity.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+        binding.btnSignOut.setOnClickListener(v -> {
+            AlertDialog alertDialog=new AlertDialog.Builder(getContext())
+                    .setTitle("Confirm Logout")
+                    .setMessage("Are you sure you signed out ?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(getContext(), LogInActivity.class);
+                        startActivity(intent);
+                    })
+                    .setNegativeButton("No", (dialog, which) -> {
 
-                            }
-                        })
-                        .create();
-                alertDialog.show();
-            }
+                    })
+                    .create();
+            alertDialog.show();
         });
     }
 }

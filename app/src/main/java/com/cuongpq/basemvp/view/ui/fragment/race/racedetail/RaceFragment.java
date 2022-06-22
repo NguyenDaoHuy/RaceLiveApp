@@ -1,7 +1,5 @@
 package com.cuongpq.basemvp.view.ui.fragment.race.racedetail;
 
-import android.view.View;
-
 import androidx.fragment.app.Fragment;
 
 import com.cuongpq.basemvp.R;
@@ -26,15 +24,12 @@ public class RaceFragment extends BaseFragmentMvp<FragmentRaceBinding, RacePrese
 
     @Override
     public void onClickListener() {
-        binding.btnCreateRace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CreateRaceFragment createRaceFragment = new CreateRaceFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .add(R.id.content,createRaceFragment, Fragment.class.getName())
-                        .addToBackStack(null)
-                        .commit();
-            }
+        binding.btnCreateRace.setOnClickListener(v -> {
+            CreateRaceFragment createRaceFragment = new CreateRaceFragment();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .add(R.id.content,createRaceFragment, Fragment.class.getName())
+                    .addToBackStack(null)
+                    .commit();
         });
     }
 }
