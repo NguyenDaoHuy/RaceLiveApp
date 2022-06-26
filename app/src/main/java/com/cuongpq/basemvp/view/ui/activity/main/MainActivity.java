@@ -2,7 +2,18 @@ package com.cuongpq.basemvp.view.ui.activity.main;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.cuongpq.basemvp.R;
@@ -12,7 +23,12 @@ import com.cuongpq.basemvp.view.ui.fragment.listRace.list.ListRaceFragment;
 import com.cuongpq.basemvp.view.ui.fragment.profile.ProfileFragment;
 import com.cuongpq.basemvp.view.ui.fragment.race.racedetail.RaceFragment;
 
+import java.io.IOException;
+
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
+
+    final private ProfileFragment profileFragment = new ProfileFragment();
+    public static final int MY_REQUEST_CODE =10;
 
     @Override
     protected void initView() {
@@ -49,7 +65,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                   binding.bottomNav.getMenu().findItem(R.id.listRace).setChecked(true);
                   break;
               case  R.id.proFile :
-                    ProfileFragment profileFragment = new ProfileFragment();
                     getFragment(profileFragment);
                     binding.bottomNav.getMenu().findItem(R.id.proFile).setChecked(true);
                     break;
@@ -62,4 +77,42 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
     }
+
+ /*   final private ActivityResultLauncher<Intent> intentActivityResultLauncher = registerForActivityResult
+            (new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == RESULT_OK){
+                        Intent intent= result.getData();
+                        if(intent == null){
+                            return;
+                        }
+                        Uri uri = intent.getData();
+                        profileFragment.setmUri(uri);
+                        try {
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                            profileFragment.setBitmapImageView(bitmap);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == MY_REQUEST_CODE){
+            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                openGallery();
+            }else {
+                Toast.makeText(this,"Vui lòng cho quyền truy cập",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    public void openGallery(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intentActivityResultLauncher.launch(Intent.createChooser(intent,"Chọn ảnh"));
+    } */
 }

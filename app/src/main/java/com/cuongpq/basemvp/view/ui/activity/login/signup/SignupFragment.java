@@ -41,7 +41,7 @@ public class SignupFragment extends BaseFragmentMvp<FragmentSignupBinding,SignUp
             }else if(!password.equals(passwordConfirm)){
                 binding.tvThongBaoDangKi.setText("Password Incorrect");
             }else {
-                presenter.onSignUp(email,password);
+                presenter.onSignUp(email,password,nameUser);
             }
         });
 

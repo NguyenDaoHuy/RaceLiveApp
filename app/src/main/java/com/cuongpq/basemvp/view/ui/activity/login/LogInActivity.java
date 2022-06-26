@@ -36,6 +36,11 @@ public class LogInActivity extends BaseActivity<ActivityLogInBinding> {
                 "SS5 VARCHAR(50)," +
                 "SS6 VARCHAR(50)," +
                 "Stop VARCHAR(50))");
+        sqLiteHelper.QueryData("CREATE TABLE IF NOT EXISTS User(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "IdAcount VARCHAR(100)," +
+                "Email VARCHAR(100)," +
+                "Name NVARCHAR(100)," +
+                "Rate VARCHAR(20))");
     }
 
 

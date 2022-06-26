@@ -30,11 +30,11 @@ public class CreateRaceFragment extends BaseFragmentMvp<FragmentCreateRaceBindin
     public void onClickListener() {
         binding.btnCreate.setOnClickListener(v -> {
             String raceID = binding.edRaceID.getText().toString().trim();
-            int idRace = Integer.parseInt(raceID);
             String raceName = binding.edRaceName.getText().toString().trim();
-            if(raceName.isEmpty()){
-                createToast("Name is empty");
+            if(raceName.isEmpty() || raceID.isEmpty()){
+                createToast("Information is empty");
             } else {
+                int idRace = Integer.parseInt(raceID);
                 presenter.createRace(idRace,raceName);
             }
         });

@@ -10,4 +10,7 @@
     <color name="blue">#1994ff</color>
     <color name="pink">#E91E63</color>
     <color name="green">#03DAAF</color>
+    <color name="dialog_color_1">#FDD736</color>
+    <color name="dialog_color_2">#3B5796</color>
+    <color name="transparent">#00000000</color>
 </resources>

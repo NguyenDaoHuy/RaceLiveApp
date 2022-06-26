@@ -1,6 +1,7 @@
 package com.cuongpq.basemvp.view.ui.fragment.race.addCar;
 
 import android.app.Activity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.cuongpq.basemvp.R;
@@ -8,11 +9,13 @@ import com.cuongpq.basemvp.databinding.FragmentAddCarBinding;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
 
 
-public class AddCarFragment extends BaseFragmentMvp<FragmentAddCarBinding,AddCarPresenter>
-      implements IAddCarView{
+public class AddCarFragment extends BaseFragmentMvp<FragmentAddCarBinding,AddCarPresenter> implements IAddCarView{
     public static final String TAG = AddCarFragment.class.getName();
     private int idRace;
-
+    private String strIdCar;
+    private String nameCar;
+    private String racer;
+    private int idCar;
 
     @Override
     protected void initView() {
@@ -34,16 +37,19 @@ public class AddCarFragment extends BaseFragmentMvp<FragmentAddCarBinding,AddCar
                   getFragmentManager().popBackStack();
               }
           });
-          binding.btnAddCar.setOnClickListener(v -> {
-               String strIdCar = binding.edCarID.getText().toString();
-               int idCar = Integer.parseInt(strIdCar);
-               String nameCar = binding.edCarName.getText().toString();
-               String racer = binding.edRacer.getText().toString();
-               if(strIdCar == ""){
-                   createToast("Empty Information");
-               }else {
-                   presenter.addCar(idCar,nameCar,racer,idRace);
-               }
+          binding.btnAddCar.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  strIdCar = binding.edCarID.getText().toString().trim();
+                  nameCar = binding.edCarName.getText().toString().trim();
+                  racer = binding.edRacer.getText().toString().trim();
+                  if(strIdCar.isEmpty() || nameCar.isEmpty() || racer.isEmpty()){
+                      createToast("Empty Information");
+                  }else {
+                      idCar = Integer.parseInt(strIdCar);
+                      presenter.addCar(idCar,nameCar,racer,idRace);
+                  }
+              }
           });
     }
 
