@@ -1,5 +1,6 @@
 package com.cuongpq.basemvp.view.ui.timekeeper.TKlistrace;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,12 +18,13 @@ import com.cuongpq.basemvp.view.ui.fragment.race.raceinfor.RaceInformationFragme
 
 public class ListRaceTimekeeperFragment extends BaseFragmentMvp<FragmentListRaceTimekeeperBinding,ListRaceTimekeeperPresenter> implements IListRaceTimekeeperView, ListRaceAdapter.IRace {
 
-    private Member member;
+    private final Member member;
 
     public ListRaceTimekeeperFragment(Member member) {
         this.member = member;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void initView() {
         super.initView();

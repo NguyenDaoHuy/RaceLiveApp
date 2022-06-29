@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ListRaceTimekeeperPresenter extends BasePresenter implements IListRaceTimekeeperPresenter {
 
-    private IListRaceTimekeeperView view;
+    private final IListRaceTimekeeperView view;
     private ArrayList<Race> raceArrayList;
 
     public ListRaceTimekeeperPresenter(IListRaceTimekeeperView view) {

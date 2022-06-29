@@ -15,7 +15,7 @@ import com.cuongpq.basemvp.view.ui.fragment.race.raceinfor.RaceInformationFragme
 public class CreateRaceFragment extends BaseFragmentMvp<FragmentCreateRaceBinding,CreateCarPresenter>
          implements ICreateRaceView {
 
-    private Member member;
+    private final Member member;
 
     public CreateRaceFragment(Member member) {
         this.member = member;

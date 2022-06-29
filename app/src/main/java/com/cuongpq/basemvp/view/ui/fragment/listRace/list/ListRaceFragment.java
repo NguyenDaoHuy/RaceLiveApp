@@ -17,7 +17,7 @@ import com.cuongpq.basemvp.view.ui.fragment.race.raceinfor.RaceInformationFragme
 
 public class ListRaceFragment extends BaseFragmentMvp<FragmentListRaceBinding, ListRacePresenter> implements IListRaceView, ListRaceAdapter.IRace {
 
-    private Member member;
+    private final Member member;
 
     public ListRaceFragment(Member member) {
         this.member = member;
@@ -44,15 +44,12 @@ public class ListRaceFragment extends BaseFragmentMvp<FragmentListRaceBinding, L
 
     @Override
     public void onClickListener() {
-        binding.btnAddMember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddMemberFragment addMemberFragment = new AddMemberFragment();
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content, addMemberFragment);
-                fragmentTransaction.addToBackStack(AddMemberFragment.TAG);
-                fragmentTransaction.commit();
-            }
+        binding.btnAddMember.setOnClickListener(v -> {
+            AddMemberFragment addMemberFragment = new AddMemberFragment();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content, addMemberFragment);
+            fragmentTransaction.addToBackStack(AddMemberFragment.TAG);
+            fragmentTransaction.commit();
         });
     }
 

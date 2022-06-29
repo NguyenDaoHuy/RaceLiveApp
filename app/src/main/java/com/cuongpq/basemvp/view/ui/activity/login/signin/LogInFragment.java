@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.FragmentLogInBinding;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
-import com.cuongpq.basemvp.view.ui.activity.login.signup.SignupFragment;
 import com.cuongpq.basemvp.view.ui.activity.main.MainActivity;
 import com.cuongpq.basemvp.view.ui.timekeeper.MainTimekeeperActivity;
 

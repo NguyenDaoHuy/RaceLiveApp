@@ -1,20 +1,16 @@
 package com.cuongpq.basemvp.view.ui.fragment.listRace.addmember;
-import androidx.annotation.NonNull;
+
 import com.cuongpq.basemvp.model.Member;
 import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
 import com.cuongpq.basemvp.view.base.presenter.BasePresenter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddMemberPresenter extends BasePresenter implements IAddMemberPresenter{
-    private IAddMemberView view;
+    private final IAddMemberView view;
     private String idAcount;
-    private FirebaseAuth mAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
@@ -33,23 +29,20 @@ public class AddMemberPresenter extends BasePresenter implements IAddMemberPrese
     @Override
     public void createMember(String memberAccount, String memberPassword, String memberName, int permission) {
         SQLiteHelper sqLiteHelper = new SQLiteHelper(view.getActivityAddMember(), "Data.sqlite", null, 5);
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(memberAccount, memberPassword)
-                .addOnCompleteListener(view.getActivityAddMember(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            firebaseDatabase = FirebaseDatabase.getInstance();
-                            databaseReference = firebaseDatabase.getReference();
-                            String IdAcount = task.getResult().getUser().getUid();
-                            Member member = new Member(memberAccount,idAcount,memberName,permission,0);
-                            databaseReference.child(IdAcount).setValue(member);
-                            sqLiteHelper.QueryData("INSERT INTO User1 VALUES(null,'" + IdAcount + "','" + memberAccount + "','"+memberPassword+"','" + memberName + "','0','"+permission+"')");
-                            view.eventToast("Add Member Success");
-                            view.addMemberSucess();
-                        } else {
-                            view.eventToast("Email used");
-                        }
+                .addOnCompleteListener(view.getActivityAddMember(), task -> {
+                    if (task.isSuccessful()) {
+                        firebaseDatabase = FirebaseDatabase.getInstance();
+                        databaseReference = firebaseDatabase.getReference();
+                        String IdAcount = task.getResult().getUser().getUid();
+                        Member member = new Member(memberAccount,idAcount,memberName,permission,0);
+                        databaseReference.child(IdAcount).setValue(member);
+                        sqLiteHelper.QueryData("INSERT INTO User1 VALUES(null,'" + IdAcount + "','" + memberAccount + "','"+memberPassword+"','" + memberName + "','0','"+permission+"')");
+                        view.eventToast("Add Member Success");
+                        view.addMemberSucess();
+                    } else {
+                        view.eventToast("Email used");
                     }
                 });
     }

@@ -15,9 +15,6 @@ import com.google.firebase.database.ValueEventListener;
 public class ProFilePresenter extends BasePresenter implements IProfilePresenter {
 
     private final IProfileView view;
-    private FirebaseUser firebaseUser;
-    private SQLiteHelper sqLiteHelper;
-    private String userID;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private Member member;
@@ -29,14 +26,14 @@ public class ProFilePresenter extends BasePresenter implements IProfilePresenter
     @Override
     public void onInitPresenter() {
         view.onClickListener();
-        sqLiteHelper = new SQLiteHelper(view.getActivityProfile(),"Data.sqlite",null,5);
+        SQLiteHelper sqLiteHelper = new SQLiteHelper(view.getActivityProfile(), "Data.sqlite", null, 5);
     //    getInfoUser();
     }
 
     @Override
     public void getInfoUser() {
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        userID = firebaseUser.getUid();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userID = firebaseUser.getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference(userID);
         databaseReference.addValueEventListener(new ValueEventListener() {

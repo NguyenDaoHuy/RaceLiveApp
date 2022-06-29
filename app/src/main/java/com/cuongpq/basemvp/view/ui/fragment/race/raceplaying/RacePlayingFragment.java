@@ -19,8 +19,6 @@ import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
 import com.cuongpq.basemvp.view.ui.fragment.race.carinfo.CarInformationFragment;
 import com.cuongpq.basemvp.view.ui.fragment.race.raceinfor.RaceInformationFragment;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -30,7 +28,6 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
     private ArrayList<Car> carArrayList;
     private Race race;
     private SQLiteHelper sqLiteHelper;
-    private String idAcount;
     public static final String TAG = RacePlayingFragment.class.getName();
     public Member member;
 
@@ -42,7 +39,7 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
         sqLiteHelper = new SQLiteHelper(getActivity(),"Data.sqlite",null,5);
         race = (Race) getArguments().getSerializable("race");
         member = (Member) getArguments().getSerializable("member");
-        idAcount = member.getIdAccount();
+        String idAcount = member.getIdAccount();
         if(carArrayList != null){
         }else {
             carArrayList = new ArrayList<>();

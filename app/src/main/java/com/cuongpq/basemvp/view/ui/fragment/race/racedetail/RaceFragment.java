@@ -10,7 +10,7 @@ import com.cuongpq.basemvp.view.ui.fragment.race.createrace.CreateRaceFragment;
 
 public class RaceFragment extends BaseFragmentMvp<FragmentRaceBinding, RacePresenter> implements IRaceView {
 
-    private Member member;
+    private final Member member;
 
     public RaceFragment(Member member) {
         this.member = member;

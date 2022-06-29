@@ -17,7 +17,7 @@ public class AdapterCarPlaying extends RecyclerView.Adapter<AdapterCarPlaying.Vi
 
     private final ICarPlaying inter;
     private boolean show = true;
-    private Member member;
+    private final Member member;
 
     public AdapterCarPlaying(ICarPlaying inter,Member member) {
         this.inter = inter;
@@ -83,18 +83,15 @@ public class AdapterCarPlaying extends RecyclerView.Adapter<AdapterCarPlaying.Vi
         holder.binding.tvStop.setText(car.getStop());
 
         holder.binding.infoCar.setVisibility(View.GONE);
-        holder.binding.btnDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(show == true){
-                    holder.binding.infoCar.setVisibility(View.VISIBLE);
-                    holder.binding.btnDown.setImageResource(R.drawable.ic_up_24);
-                    show = false;
-                }else {
-                    holder.binding.infoCar.setVisibility(View.GONE);
-                    holder.binding.btnDown.setImageResource(R.drawable.ic_down_24);
-                    show = true;
-                }
+        holder.binding.btnDown.setOnClickListener(v -> {
+            if(show == true){
+                holder.binding.infoCar.setVisibility(View.VISIBLE);
+                holder.binding.btnDown.setImageResource(R.drawable.ic_up_24);
+                show = false;
+            }else {
+                holder.binding.infoCar.setVisibility(View.GONE);
+                holder.binding.btnDown.setImageResource(R.drawable.ic_down_24);
+                show = true;
             }
         });
 

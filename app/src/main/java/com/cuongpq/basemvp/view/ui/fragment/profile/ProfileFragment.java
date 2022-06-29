@@ -1,7 +1,7 @@
 package com.cuongpq.basemvp.view.ui.fragment.profile;
 
 
-import static com.cuongpq.basemvp.view.ui.activity.main.MainActivity.MY_REQUEST_CODE;
+import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
 import android.app.Activity;
@@ -12,9 +12,12 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
@@ -24,9 +27,6 @@ import com.cuongpq.basemvp.model.Member;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
 import com.cuongpq.basemvp.view.dialog.RateUsDialog;
 import com.cuongpq.basemvp.view.ui.activity.login.LogInActivity;
-import com.cuongpq.basemvp.view.ui.activity.main.MainActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -36,14 +36,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+
 public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProFilePresenter> implements IProfileView{
 
     private Member member;
-    private FirebaseUser firebaseUser;
     private String userID;
     private FirebaseDatabase firebaseDatabase;
     private Uri mUri;
-    private DatabaseReference databaseReference;
+    public static final int MY_REQUEST_CODE =10;
 
     @Override
     protected void initView() {
@@ -51,7 +52,7 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
         presenter = new ProFilePresenter(this);
         presenter.onInitPresenter();
         binding.btnSetAvt.setVisibility(View.INVISIBLE);
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         userID = firebaseUser.getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
         getInfoUser();
@@ -86,19 +87,11 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
             rateUsDialog.setCancelable(false);
             rateUsDialog.show();
         });
-        binding.imAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickRequestPermission();
-                binding.btnSetAvt.setVisibility(View.VISIBLE);
-            }
+        binding.imAvatar.setOnClickListener(v -> {
+            onClickRequestPermission();
+            binding.btnSetAvt.setVisibility(View.VISIBLE);
         });
-        binding.btnSetAvt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAvatar();
-            }
-        });
+        binding.btnSetAvt.setOnClickListener(v -> updateAvatar());
     }
 
     @Override
@@ -113,7 +106,7 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
     }
 
     public void getInfoUser() {
-        databaseReference = firebaseDatabase.getReference(userID);
+        DatabaseReference databaseReference = firebaseDatabase.getReference(userID);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -135,16 +128,12 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
         Glide.with(this).load(user.getPhotoUrl()).error(R.drawable.avatardefult1).into(binding.imAvatar);
     }
     private void onClickRequestPermission(){
-        MainActivity mainActivity = (MainActivity) getActivity();
-        if(mainActivity == null){
-            return;
-        }
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            mainActivity.openGallery();
+            openGallery();
             return;
         }
         if(getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-            mainActivity.openGallery();
+            openGallery();
         }else {
             String[] permisstions = {Manifest.permission.READ_EXTERNAL_STORAGE};
             this.requestPermissions(permisstions,MY_REQUEST_CODE);
@@ -166,15 +155,49 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setPhotoUri(mUri)
                 .build();
-        user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        binding.btnSetAvt.setVisibility(View.INVISIBLE);
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getActivity(),"Sucess",Toast.LENGTH_SHORT).show();
-                            setUserAvatar();
-                        }
+        user.updateProfile(profileUpdates).addOnCompleteListener(task -> {
+            binding.btnSetAvt.setVisibility(View.INVISIBLE);
+            if (task.isSuccessful()) {
+                Toast.makeText(getActivity(),"Sucess",Toast.LENGTH_SHORT).show();
+                setUserAvatar();
+            }
+        });
+    }
+
+    final private ActivityResultLauncher<Intent> intentActivityResultLauncher = registerForActivityResult
+            (new ActivityResultContracts.StartActivityForResult(), result -> {
+                if(result.getResultCode() == RESULT_OK){
+                    Intent intent= result.getData();
+                    if(intent == null){
+                        return;
                     }
-                });
+                    Uri uri = intent.getData();
+                    setmUri(uri);
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),uri);
+                        setBitmapImageView(bitmap);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == MY_REQUEST_CODE){
+            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                openGallery();
+            }else {
+                Toast.makeText(getContext(),"Please give access",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void openGallery(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intentActivityResultLauncher.launch(Intent.createChooser(intent,"Pick image"));
     }
 }

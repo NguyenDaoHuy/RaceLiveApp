@@ -1,5 +1,6 @@
 package com.cuongpq.basemvp.view.ui.fragment.race.createrace;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 
 import com.cuongpq.basemvp.model.Race;
@@ -51,7 +52,7 @@ public class CreateCarPresenter extends BasePresenter implements ICreateRacePres
     public void getDay() {
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         dat = sdf.format(date);
         view.setDay(dat);
     }

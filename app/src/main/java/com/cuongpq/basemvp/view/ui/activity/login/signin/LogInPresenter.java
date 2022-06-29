@@ -1,11 +1,8 @@
 package com.cuongpq.basemvp.view.ui.activity.login.signin;
 
-import android.database.Cursor;
-
 import androidx.annotation.NonNull;
 
 import com.cuongpq.basemvp.model.Member;
-import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
 import com.cuongpq.basemvp.view.base.presenter.BasePresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,7 +18,6 @@ public class LogInPresenter extends BasePresenter implements ILogInPresenter, Va
     private Member member;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private String userID;
 

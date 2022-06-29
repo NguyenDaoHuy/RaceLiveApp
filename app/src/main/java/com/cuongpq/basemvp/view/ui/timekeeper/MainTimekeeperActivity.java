@@ -1,7 +1,6 @@
 package com.cuongpq.basemvp.view.ui.timekeeper;
 
 import android.annotation.SuppressLint;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -9,9 +8,7 @@ import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.ActivityMainTimekeeperBinding;
 import com.cuongpq.basemvp.model.Member;
 import com.cuongpq.basemvp.view.base.activity.BaseActivity;
-import com.cuongpq.basemvp.view.ui.fragment.listRace.list.ListRaceFragment;
 import com.cuongpq.basemvp.view.ui.fragment.profile.ProfileFragment;
-import com.cuongpq.basemvp.view.ui.fragment.race.racedetail.RaceFragment;
 import com.cuongpq.basemvp.view.ui.timekeeper.TKlistrace.ListRaceTimekeeperFragment;
 
 public class MainTimekeeperActivity extends BaseActivity<ActivityMainTimekeeperBinding> {

@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -21,8 +19,6 @@ import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
 import com.cuongpq.basemvp.view.ui.fragment.race.addCar.AddCarFragment;
 import com.cuongpq.basemvp.view.ui.fragment.race.raceplaying.RacePlayingFragment;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +31,6 @@ public class RaceInformationFragment extends BaseFragmentMvp<FragmentRaceInforma
     private Race race;
     private ArrayList<Car> carArrayList;
     private SQLiteHelper sqLiteHelper;
-    private String idAcount;
     public static final String TAG = RaceInformationFragment.class.getName();
     private Member member;
 
@@ -56,7 +51,7 @@ public class RaceInformationFragment extends BaseFragmentMvp<FragmentRaceInforma
         }
         race = (Race) getArguments().getSerializable("race");
         member = (Member) getArguments().getSerializable("member");
-        idAcount = member.getIdAccount();
+        String idAcount = member.getIdAccount();
         getDataCar();
         binding.tvRaceName.setText(race.getNameRace());
         if(member.getQuyen() == 0){

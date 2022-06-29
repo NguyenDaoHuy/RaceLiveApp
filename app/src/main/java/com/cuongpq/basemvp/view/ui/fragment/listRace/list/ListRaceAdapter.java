@@ -1,5 +1,6 @@
 package com.cuongpq.basemvp.view.ui.fragment.listRace.list;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import com.cuongpq.basemvp.model.Race;
 public class ListRaceAdapter extends RecyclerView.Adapter<ListRaceAdapter.ViewHolder> {
 
     private final IRace inter;
-    private Member member;
+    private final Member member;
 
     public ListRaceAdapter(IRace inter, Member member) {
         this.inter = inter;
@@ -28,6 +29,7 @@ public class ListRaceAdapter extends RecyclerView.Adapter<ListRaceAdapter.ViewHo
         return new ViewHolder(binding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ListRaceAdapter.ViewHolder holder, int position) {
         Race race = inter.getRace(position);
