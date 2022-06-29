@@ -43,20 +43,22 @@
                       android:textStyle="bold"
                       android:drawableRight="@drawable/ic_car_24"/>
               </RelativeLayout>
+
            <androidx.recyclerview.widget.RecyclerView
                android:id="@+id/rvCarPlaying"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
-               android:layout_margin="10dp"/>
+               android:layout_margin="10dp" />
        </LinearLayout>
-            <TextView
-                android:id="@+id/tvThongBaoSLXe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Not car !"
-                android:layout_centerInParent="true"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:textColor="#B3B1B1"/>
+
+         <TextView
+             android:id="@+id/tvThongBaoSLXe"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:text="Not car !"
+             android:textColor="#B3B1B1"
+             android:textSize="30dp"
+             android:textStyle="bold" />
      </RelativeLayout>
 </layout>

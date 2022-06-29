@@ -11,14 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.ItemCarPlayingBinding;
 import com.cuongpq.basemvp.model.Car;
+import com.cuongpq.basemvp.model.Member;
 
 public class AdapterCarPlaying extends RecyclerView.Adapter<AdapterCarPlaying.ViewHolder> {
 
     private final ICarPlaying inter;
     private boolean show = true;
+    private Member member;
 
-    public AdapterCarPlaying(ICarPlaying inter) {
+    public AdapterCarPlaying(ICarPlaying inter,Member member) {
         this.inter = inter;
+        this.member = member;
     }
 
     @NonNull
@@ -34,6 +37,13 @@ public class AdapterCarPlaying extends RecyclerView.Adapter<AdapterCarPlaying.Vi
         Car car = inter.getCar(position);
         holder.binding.nameCar.setText(car.getId() + " . " + car.getNameCar());
         holder.binding.nameRacer.setText("Racer : " + car.getRacer());
+        if(member.getQuyen() == 1){
+            holder.binding.btnDeleteCar.setVisibility(View.GONE);
+        }
+        if(member.getQuyen() == 2){
+            holder.binding.btnDeleteCar.setVisibility(View.GONE);
+            holder.binding.btnGo.setVisibility(View.GONE);
+        }
         if(car.getLevel() == 1){
             holder.binding.tvLevel.setText("SS1");
             holder.binding.tvStartTime.setText("Start : "+ car.getStart());
@@ -61,6 +71,7 @@ public class AdapterCarPlaying extends RecyclerView.Adapter<AdapterCarPlaying.Vi
         }
         holder.binding.carPlaying.setOnClickListener(v -> inter.onClickItem(position));
         holder.binding.btnGo.setOnClickListener(v -> inter.onClickGo(position));
+        holder.binding.btnDeleteCar.setOnClickListener(v -> inter.onCLickDeleteCar(position));
 
         holder.binding.tvStart.setText(car.getStart());
         holder.binding.tvSS1.setText(car.getSs1());
@@ -86,6 +97,7 @@ public class AdapterCarPlaying extends RecyclerView.Adapter<AdapterCarPlaying.Vi
                 }
             }
         });
+
     }
 
     @Override
@@ -97,6 +109,7 @@ public class AdapterCarPlaying extends RecyclerView.Adapter<AdapterCarPlaying.Vi
         Car getCar(int position);
         void onClickItem(int position);
         void onClickGo(int position);
+        void onCLickDeleteCar(int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

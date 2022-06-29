@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/listRace"
+        android:title="List Race"
+        android:icon="@drawable/icon_list_race"/>
+    <item android:id="@+id/proFile"
+        android:title="Profile"
+        android:icon="@drawable/icon_user"/>
+</menu>

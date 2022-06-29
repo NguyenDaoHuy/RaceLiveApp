@@ -46,8 +46,8 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="40dp"
                 android:background="@drawable/custom_button_signout_3"
                 android:text="Go"
                 android:textColor="@color/white"
@@ -84,6 +84,14 @@
                 android:paddingRight="15dp"
                 android:paddingLeft="15dp"
                 android:src="@drawable/ic_down_24" />
+
+            <ImageView
+                android:id="@+id/btnDeleteCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_delete" />
         </RelativeLayout>
     </RelativeLayout>
         <RelativeLayout

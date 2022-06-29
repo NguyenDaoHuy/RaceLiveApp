@@ -8,4 +8,5 @@ public interface IListCarPresenter {
     void initPresenter();
     void getDataRace();
     ArrayList<Race> getRaceList();
+    void deleteRace(Race race);
 }

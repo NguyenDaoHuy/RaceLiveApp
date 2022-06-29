@@ -1,5 +1,6 @@
 package com.cuongpq.basemvp.view.ui.fragment.profile;
 
+
 import static com.cuongpq.basemvp.view.ui.activity.main.MainActivity.MY_REQUEST_CODE;
 
 import android.Manifest;
@@ -19,7 +20,7 @@ import androidx.annotation.NonNull;
 import com.bumptech.glide.Glide;
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.FragmentProfileBinding;
-import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
+import com.cuongpq.basemvp.model.Member;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
 import com.cuongpq.basemvp.view.dialog.RateUsDialog;
 import com.cuongpq.basemvp.view.ui.activity.login.LogInActivity;
@@ -29,14 +30,21 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProFilePresenter> implements IProfileView{
 
+    private Member member;
     private FirebaseUser firebaseUser;
     private String userID;
     private FirebaseDatabase firebaseDatabase;
     private Uri mUri;
+    private DatabaseReference databaseReference;
+
     @Override
     protected void initView() {
         super.initView();
@@ -46,7 +54,8 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         userID = firebaseUser.getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
-   //     setUserAvatar();
+        getInfoUser();
+        setUserAvatar();
     }
 
     @Override
@@ -77,7 +86,7 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
             rateUsDialog.setCancelable(false);
             rateUsDialog.show();
         });
-    /*    binding.imAvatar.setOnClickListener(new View.OnClickListener() {
+        binding.imAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickRequestPermission();
@@ -89,7 +98,7 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
             public void onClick(View v) {
                 updateAvatar();
             }
-        }); */
+        });
     }
 
     @Override
@@ -102,7 +111,23 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
         binding.tvUserName.setText(name);
         binding.tvUserEmail.setText(email);
     }
- /*   private void setUserAvatar() {
+
+    public void getInfoUser() {
+        databaseReference = firebaseDatabase.getReference(userID);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                member = snapshot.getValue(Member.class);
+                binding.tvUserName.setText(member.getMemberName());
+                binding.tvUserEmail.setText(member.getMemberAccount());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void setUserAvatar() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null){
             return;
@@ -126,7 +151,8 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
         }
     }
     public void setBitmapImageView(Bitmap bitmapImageView){
-        binding.imAvatar.setImageBitmap(bitmapImageView);
+        Glide.with(binding.imAvatar).load(bitmapImageView).into(binding.imAvatar);
+    //    binding.imAvatar.setImageBitmap(bitmapImageView);
     }
 
     public void setmUri(Uri mUri) {
@@ -140,9 +166,7 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setPhotoUri(mUri)
                 .build();
-
-        user.updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+        user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         binding.btnSetAvt.setVisibility(View.INVISIBLE);
@@ -152,5 +176,5 @@ public class ProfileFragment extends BaseFragmentMvp<FragmentProfileBinding,ProF
                         }
                     }
                 });
-    } */
+    }
 }

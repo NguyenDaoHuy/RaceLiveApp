@@ -8,11 +8,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.FragmentCreateRaceBinding;
+import com.cuongpq.basemvp.model.Member;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
 import com.cuongpq.basemvp.view.ui.fragment.race.raceinfor.RaceInformationFragment;
 
 public class CreateRaceFragment extends BaseFragmentMvp<FragmentCreateRaceBinding,CreateCarPresenter>
          implements ICreateRaceView {
+
+    private Member member;
+
+    public CreateRaceFragment(Member member) {
+        this.member = member;
+    }
 
     @Override
     public int getMainLayout() {
@@ -61,6 +68,7 @@ public class CreateRaceFragment extends BaseFragmentMvp<FragmentCreateRaceBindin
         RaceInformationFragment raceInformationFragment = new RaceInformationFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("race",presenter.getRace());
+        bundle.putSerializable("member",member);
         raceInformationFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content, raceInformationFragment);

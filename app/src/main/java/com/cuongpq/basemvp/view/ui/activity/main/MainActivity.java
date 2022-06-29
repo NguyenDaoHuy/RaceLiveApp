@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.ActivityMainBinding;
+import com.cuongpq.basemvp.model.Member;
 import com.cuongpq.basemvp.view.base.activity.BaseActivity;
 import com.cuongpq.basemvp.view.ui.fragment.listRace.list.ListRaceFragment;
 import com.cuongpq.basemvp.view.ui.fragment.profile.ProfileFragment;
@@ -29,10 +30,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     final private ProfileFragment profileFragment = new ProfileFragment();
     public static final int MY_REQUEST_CODE =10;
+    private Member member;
 
     @Override
     protected void initView() {
-        RaceFragment raceFragment = new RaceFragment();
+        member = (Member) getIntent().getSerializableExtra("member");
+        RaceFragment raceFragment = new RaceFragment(member);
         getFragment(raceFragment);
         onCLickMenuItem();
     }
@@ -55,16 +58,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         binding.bottomNav.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()){
               case  R.id.createRace :
-                  RaceFragment raceFragment = new RaceFragment();
+                  RaceFragment raceFragment = new RaceFragment(member);
                   getFragment(raceFragment);
                   binding.bottomNav.getMenu().findItem(R.id.createRace).setChecked(true);
                   break;
               case  R.id.listRace :
-                  ListRaceFragment listRaceFragment = new ListRaceFragment();
+                  ListRaceFragment listRaceFragment = new ListRaceFragment(member);
                   getFragment(listRaceFragment);
                   binding.bottomNav.getMenu().findItem(R.id.listRace).setChecked(true);
                   break;
               case  R.id.proFile :
+                    ProfileFragment profileFragment = new ProfileFragment();
                     getFragment(profileFragment);
                     binding.bottomNav.getMenu().findItem(R.id.proFile).setChecked(true);
                     break;
@@ -78,7 +82,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         super.onPointerCaptureChanged(hasCapture);
     }
 
- /*   final private ActivityResultLauncher<Intent> intentActivityResultLauncher = registerForActivityResult
+    final private ActivityResultLauncher<Intent> intentActivityResultLauncher = registerForActivityResult
             (new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
@@ -105,7 +109,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 openGallery();
             }else {
-                Toast.makeText(this,"Vui lòng cho quyền truy cập",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Please give access",Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -113,6 +117,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        intentActivityResultLauncher.launch(Intent.createChooser(intent,"Chọn ảnh"));
-    } */
+        intentActivityResultLauncher.launch(Intent.createChooser(intent,"Pick image"));
+    }
 }

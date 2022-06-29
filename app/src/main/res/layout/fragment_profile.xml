@@ -11,7 +11,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imAvatar"
                 android:layout_width="90dp"
@@ -20,7 +19,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/profile_custom_avatar"
                 android:scaleType="centerCrop"
-                android:src="@drawable/avatardefult1" />
+                android:src="@drawable/avatardefult1"/>
             <Button
                 android:id="@+id/btnSetAvt"
                 android:layout_width="wrap_content"

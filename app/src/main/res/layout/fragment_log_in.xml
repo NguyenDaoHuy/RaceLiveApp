@@ -89,11 +89,11 @@
                     android:fontFamily="sans-serif-condensed-medium"/>
                 <RelativeLayout
                     android:layout_below="@+id/tvThongBaoDangNhap"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true">
 
-                    <Button
+            <!--        <Button
                         android:id="@+id/btnRegister"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
@@ -102,13 +102,13 @@
                         android:fontFamily="monospace"
                         android:text="Register"
                         android:textAllCaps="false"
-                        android:textStyle="bold" />
+                        android:textStyle="bold" />   -->
                     <Button
                         android:id="@+id/btnLogin"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:text="Log In"
-                        android:layout_toEndOf="@+id/btnRegister"
+                        android:layout_centerInParent="true"
                         android:textStyle="bold"
                         android:fontFamily="monospace"
                         android:textAllCaps="false"

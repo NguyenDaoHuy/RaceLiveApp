@@ -17,10 +17,16 @@ import androidx.databinding.DataBindingUtil;
 
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.RateUsDialogLayoutBinding;
+import com.cuongpq.basemvp.model.Member;
 import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
 import com.cuongpq.basemvp.view.ui.fragment.race.raceinfor.RaceInformationFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RateUsDialog extends Dialog {
 
@@ -29,6 +35,9 @@ public class RateUsDialog extends Dialog {
     private FirebaseUser firebaseUser;
     private SQLiteHelper sqLiteHelper;
     private String idAcount;
+    private Member member;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     public RateUsDialog(@NonNull Context context) {
         super(context);
@@ -42,6 +51,7 @@ public class RateUsDialog extends Dialog {
         sqLiteHelper = new SQLiteHelper(getContext(),"Data.sqlite",null,5);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         idAcount = firebaseUser.getUid();
+        firebaseDatabase = FirebaseDatabase.getInstance();
         getRate();
         onClick();
     }
@@ -69,7 +79,8 @@ public class RateUsDialog extends Dialog {
             public void onClick(View v) {
                 String rateStr;
                 rateStr = String.valueOf(userRate);
-                sqLiteHelper.QueryData("UPDATE User SET Rate = '"+rateStr+"' WHERE IdAcount = '"+idAcount+"'");
+                sqLiteHelper.QueryData("UPDATE User1 SET Rate = '"+rateStr+"' WHERE Email = '"+member.getMemberAccount()+"'");
+                firebaseDatabase.getReference().child(idAcount).child("rate").setValue(userRate);
                 dismiss();
                 Toast.makeText(getContext(),"Ok",Toast.LENGTH_SHORT).show();
             }
@@ -89,12 +100,26 @@ public class RateUsDialog extends Dialog {
         binding.imgStatus.setAnimation(scaleAnimation);
     }
     private void getRate(){
-        String strRate;
-        Cursor data = sqLiteHelper.GetData("SELECT * FROM User WHERE IdAcount = '"+idAcount+"'");
+    /*    String strRate;
+        Cursor data = sqLiteHelper.GetData("SELECT * FROM User1 WHERE Email = '"+member.getMemberAccount()+"'");
         while (data.moveToNext()){
-            strRate = data.getString(4);
+            strRate = data.getString(5);
             userRate = Float.parseFloat(strRate);
         }
-        binding.ratingBar.setRating(userRate);
+        binding.ratingBar.setRating(userRate); */
+   //       binding.ratingBar.setRating(member.getRate());
+
+        databaseReference = firebaseDatabase.getReference(idAcount);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                member = snapshot.getValue(Member.class);
+                binding.ratingBar.setRating(member.getRate());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

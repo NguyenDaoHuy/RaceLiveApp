@@ -1,20 +1,24 @@
 package com.cuongpq.basemvp.view.ui.fragment.listRace.list;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cuongpq.basemvp.databinding.ItemRaceBinding;
+import com.cuongpq.basemvp.model.Member;
 import com.cuongpq.basemvp.model.Race;
 
 public class ListRaceAdapter extends RecyclerView.Adapter<ListRaceAdapter.ViewHolder> {
 
     private final IRace inter;
+    private Member member;
 
-    public ListRaceAdapter(IRace inter) {
+    public ListRaceAdapter(IRace inter, Member member) {
         this.inter = inter;
+        this.member = member;
     }
 
     @NonNull
@@ -29,7 +33,11 @@ public class ListRaceAdapter extends RecyclerView.Adapter<ListRaceAdapter.ViewHo
         Race race = inter.getRace(position);
         holder.binding.nameRace.setText(race.getIdRace() + " . "+ race.getNameRace());
         holder.binding.dateRace.setText(race.getDate());
+        if(member.getQuyen() == 1 || member.getQuyen() == 2){
+            holder.binding.btnDeleteRace.setVisibility(View.GONE);
+        }
         holder.itemView.setOnClickListener(v -> inter.onClickItem(position));
+        holder.binding.btnDeleteRace.setOnClickListener(v -> inter.onCLickDelete(position));
     }
 
     @Override
@@ -41,6 +49,7 @@ public class ListRaceAdapter extends RecyclerView.Adapter<ListRaceAdapter.ViewHo
         int getCount();
         Race getRace(int position);
         void onClickItem(int position);
+        void onCLickDelete(int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

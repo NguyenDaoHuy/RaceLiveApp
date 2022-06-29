@@ -52,7 +52,13 @@
                 android:text="Start"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
-
+            <ImageView
+                android:id="@+id/btnDeleteCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete"
+                android:layout_alignParentRight="true"
+                android:padding="7dp"/>
         </RelativeLayout>
     </RelativeLayout>
 </layout>

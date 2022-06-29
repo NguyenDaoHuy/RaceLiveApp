@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+            <TextView
+                android:id="@+id/tvRaceList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="serif-monospace"
+                android:text="List Race"
+                android:textColor="#554B4B"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:drawableRight="@drawable/ic_bike"
+                android:drawablePadding="15dp"/>
+            <TextView
+                android:id="@+id/memberName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="serif-monospace"
+                android:text="Check List : Huy Tu"
+                android:textColor="#777272"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/tvRaceList"/>
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRaceTK"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvThongBaoSLRace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Not Race !"
+        android:textColor="#B3B1B1"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+</RelativeLayout>
+</layout>

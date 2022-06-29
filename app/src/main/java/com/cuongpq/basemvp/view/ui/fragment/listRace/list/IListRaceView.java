@@ -6,4 +6,6 @@ public interface IListRaceView {
     void onClickListener();
     void initRecyclerView();
     Activity getActivityListRace();
+    void eventToast(String str);
+    void clearRv();
 }

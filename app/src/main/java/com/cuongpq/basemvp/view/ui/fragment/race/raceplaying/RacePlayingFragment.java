@@ -1,6 +1,7 @@
 package com.cuongpq.basemvp.view.ui.fragment.race.raceplaying;
 
 
+import android.app.AlertDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.cuongpq.basemvp.R;
 import com.cuongpq.basemvp.databinding.FragmentRacePlayingBinding;
 import com.cuongpq.basemvp.model.Car;
+import com.cuongpq.basemvp.model.Member;
 import com.cuongpq.basemvp.model.Race;
 import com.cuongpq.basemvp.service.sqlite.SQLiteHelper;
 import com.cuongpq.basemvp.view.base.fragment.BaseFragmentMvp;
@@ -30,6 +32,7 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
     private SQLiteHelper sqLiteHelper;
     private String idAcount;
     public static final String TAG = RacePlayingFragment.class.getName();
+    public Member member;
 
     @Override
     protected void initView() {
@@ -37,9 +40,9 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
         presenter = new RacePlayingPresenter(this);
         presenter.initPresenter();
         sqLiteHelper = new SQLiteHelper(getActivity(),"Data.sqlite",null,5);
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        idAcount = firebaseUser.getUid();
         race = (Race) getArguments().getSerializable("race");
+        member = (Member) getArguments().getSerializable("member");
+        idAcount = member.getIdAccount();
         if(carArrayList != null){
         }else {
             carArrayList = new ArrayList<>();
@@ -61,7 +64,7 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
 
     @Override
     public void initRecyclerView() {
-        AdapterCarPlaying adapterCarPlaying = new AdapterCarPlaying(this);
+        AdapterCarPlaying adapterCarPlaying = new AdapterCarPlaying(this,member);
         binding.rvCarPlaying.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.rvCarPlaying.setAdapter(adapterCarPlaying);
     }
@@ -83,10 +86,18 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
         Bundle bundle = new Bundle();
         bundle.putSerializable("car",car);
         carInformationFragment.setArguments(bundle);
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content, carInformationFragment);
-        fragmentTransaction.addToBackStack(CarInformationFragment.TAG);
-        fragmentTransaction.commit();
+        if(member.getQuyen() == 0){
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content, carInformationFragment);
+            fragmentTransaction.addToBackStack(CarInformationFragment.TAG);
+            fragmentTransaction.commit();
+        }else if(member.getQuyen() == 1 || member.getQuyen() == 2){
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.contentTimekeeper, carInformationFragment);
+            fragmentTransaction.addToBackStack(CarInformationFragment.TAG);
+            fragmentTransaction.commit();
+        }
+
     }
 
     @Override
@@ -94,25 +105,43 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
         int idCar = carArrayList.get(position).getId();
         int lv = carArrayList.get(position).getLevel();
         if(lv == 1){
-            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '2' , SS1 = '"+RaceInformationFragment.getTime()+"' WHERE IdAcount = '"+idAcount+"' AND IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
+            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '2' , SS1 = '"+RaceInformationFragment.getTime()+"' WHERE IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
         }else if(lv == 2){
-            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '3' , SS2 = '"+RaceInformationFragment.getTime()+"' WHERE IdAcount = '"+idAcount+"' AND IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
+            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '3' , SS2 = '"+RaceInformationFragment.getTime()+"' WHERE IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
         }else if(lv == 3){
-            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '4' , SS3 = '"+RaceInformationFragment.getTime()+"' WHERE IdAcount = '"+idAcount+"' AND IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
+            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '4' , SS3 = '"+RaceInformationFragment.getTime()+"' WHERE IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
         }else if(lv == 4){
-            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '5' , SS4 = '"+RaceInformationFragment.getTime()+"' WHERE IdAcount = '"+idAcount+"' AND IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
+            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '5' , SS4 = '"+RaceInformationFragment.getTime()+"' WHERE IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
         }else if(lv == 5){
-            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '6' , SS5 = '"+RaceInformationFragment.getTime()+"' WHERE IdAcount = '"+idAcount+"' AND IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
+            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '6' , SS5 = '"+RaceInformationFragment.getTime()+"' WHERE IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
         }else if(lv == 6){
-            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '7' , SS6 = '"+RaceInformationFragment.getTime()+"' WHERE IdAcount = '"+idAcount+"' AND IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
+            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '7' , SS6 = '"+RaceInformationFragment.getTime()+"' WHERE IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
         }else if(lv == 7){
-            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '8' , Stop = '"+RaceInformationFragment.getTime()+"' WHERE IdAcount = '"+idAcount+"' AND IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
+            sqLiteHelper.QueryData("UPDATE Car1 SET Level = '8' , Stop = '"+RaceInformationFragment.getTime()+"' WHERE IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
         }else if(lv == 8){
             Toast.makeText(getContext(),"Finish",Toast.LENGTH_SHORT).show();
         }
         getDataCar();
         initRecyclerView();
     }
+
+    @Override
+    public void onCLickDeleteCar(int position) {
+        AlertDialog alertDialog=new AlertDialog.Builder(getContext())
+                .setTitle("Confirm Delete")
+                .setMessage("Are you sure delete car ?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    sqLiteHelper.QueryData("DELETE FROM Car1 WHERE IdCar = '"+ carArrayList.get(position).getId() +"' AND IdRace = '"+race.getIdRace()+"'");
+                    getDataCar();
+                    Toast.makeText(getContext(),"Deleted",Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("No", (dialog, which) -> {
+
+                })
+                .create();
+        alertDialog.show();
+    }
+
     private void checkList(){
         if(carArrayList.size() == 0){
             binding.tvThongBaoSLXe.setVisibility(View.VISIBLE);
@@ -122,8 +151,7 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
     }
     private void getDataCar(){
         carArrayList.clear();
-        Cursor data = sqLiteHelper.GetData("SELECT * FROM Car1 WHERE IdAcount = '"+idAcount+"' " +
-                "AND IdRace = '"+race.getIdRace()+"'");
+        Cursor data = sqLiteHelper.GetData("SELECT * FROM Car1 WHERE IdRace = '"+race.getIdRace()+"'");
         while(data.moveToNext()){
             int id = data.getInt(3);
             String name = data.getString(4);
