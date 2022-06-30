@@ -45,6 +45,7 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
             carArrayList = new ArrayList<>();
         }
         binding.tvRaceName.setText(race.getNameRace());
+        initRecyclerView();
         getDataCar();
         checkList();
     }
@@ -119,7 +120,6 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
             Toast.makeText(getContext(),"Finish",Toast.LENGTH_SHORT).show();
         }
         getDataCar();
-        initRecyclerView();
     }
 
     @Override
@@ -166,6 +166,6 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
                 carArrayList.add(new Car(id,name,racer,lv,start,ss1,ss2,ss3,ss4,ss5,ss6,stop));
             }
         }
-        initRecyclerView();
+        binding.rvCarPlaying.getAdapter().notifyDataSetChanged();
     }
 }

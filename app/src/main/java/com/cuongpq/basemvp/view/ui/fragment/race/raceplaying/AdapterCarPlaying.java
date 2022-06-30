@@ -71,6 +71,7 @@ public class AdapterCarPlaying extends RecyclerView.Adapter<AdapterCarPlaying.Vi
         }
         holder.binding.carPlaying.setOnClickListener(v -> inter.onClickItem(position));
         holder.binding.btnGo.setOnClickListener(v -> inter.onClickGo(position));
+
         holder.binding.btnDeleteCar.setOnClickListener(v -> inter.onCLickDeleteCar(position));
 
         holder.binding.tvStart.setText(car.getStart());

@@ -40,6 +40,7 @@ public class AddMemberPresenter extends BasePresenter implements IAddMemberPrese
                         databaseReference.child(IdAcount).setValue(member);
                         sqLiteHelper.QueryData("INSERT INTO User1 VALUES(null,'" + IdAcount + "','" + memberAccount + "','"+memberPassword+"','" + memberName + "','0','"+permission+"')");
                         view.eventToast("Add Member Success");
+                        FirebaseAuth.getInstance().signOut();
                         view.addMemberSucess();
                     } else {
                         view.eventToast("Email used");
