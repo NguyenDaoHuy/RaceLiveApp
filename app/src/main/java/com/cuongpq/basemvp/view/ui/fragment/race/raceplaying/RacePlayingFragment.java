@@ -1,6 +1,7 @@
 package com.cuongpq.basemvp.view.ui.fragment.race.raceplaying;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -25,7 +26,6 @@ import java.util.ArrayList;
 public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBinding,RacePlayingPresenter>
     implements IRacePlayingView, AdapterCarPlaying.ICarPlaying {
 
-    private ArrayList<Car> carArrayList;
     private Race race;
     private SQLiteHelper sqLiteHelper;
     public static final String TAG = RacePlayingFragment.class.getName();
@@ -40,13 +40,9 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
         race = (Race) getArguments().getSerializable("race");
         member = (Member) getArguments().getSerializable("member");
         String idAcount = member.getIdAccount();
-        if(carArrayList != null){
-        }else {
-            carArrayList = new ArrayList<>();
-        }
         binding.tvRaceName.setText(race.getNameRace());
         initRecyclerView();
-        getDataCar();
+        presenter.getData(race);
         checkList();
     }
 
@@ -68,18 +64,23 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
     }
 
     @Override
+    public Activity getActivityPlaying() {
+        return getActivity();
+    }
+
+    @Override
     public int getCount() {
-        return carArrayList.size();
+        return presenter.getListCar().size();
     }
 
     @Override
     public Car getCar(int position) {
-        return carArrayList.get(position);
+        return presenter.getListCar().get(position);
     }
 
     @Override
     public void onClickItem(int position) {
-        Car car = carArrayList.get(position);
+        Car car = presenter.getListCar().get(position);
         CarInformationFragment carInformationFragment = new CarInformationFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("car",car);
@@ -100,8 +101,8 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
 
     @Override
     public void onClickGo(int position) {
-        int idCar = carArrayList.get(position).getId();
-        int lv = carArrayList.get(position).getLevel();
+        int idCar = presenter.getListCar().get(position).getId();
+        int lv = presenter.getListCar().get(position).getLevel();
         if(lv == 1){
             sqLiteHelper.QueryData("UPDATE Car1 SET Level = '2' , SS1 = '"+RaceInformationFragment.getTime()+"' WHERE IdCar = '"+idCar+"' AND IdRace = '"+race.getIdRace()+"' ");
         }else if(lv == 2){
@@ -119,7 +120,8 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
         }else if(lv == 8){
             Toast.makeText(getContext(),"Finish",Toast.LENGTH_SHORT).show();
         }
-        getDataCar();
+        presenter.getData(race);
+        binding.rvCarPlaying.getAdapter().notifyDataSetChanged();
     }
 
     @Override
@@ -128,9 +130,10 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
                 .setTitle("Confirm Delete")
                 .setMessage("Are you sure delete car ?")
                 .setPositiveButton("Yes", (dialog, which) -> {
-                    sqLiteHelper.QueryData("DELETE FROM Car1 WHERE IdCar = '"+ carArrayList.get(position).getId() +"' AND IdRace = '"+race.getIdRace()+"'");
-                    getDataCar();
+                    sqLiteHelper.QueryData("DELETE FROM Car1 WHERE IdCar = '"+ presenter.getListCar().get(position).getId() +"' AND IdRace = '"+race.getIdRace()+"'");
+                    presenter.getData(race);
                     Toast.makeText(getContext(),"Deleted",Toast.LENGTH_SHORT).show();
+                    binding.rvCarPlaying.getAdapter().notifyDataSetChanged();
                 })
                 .setNegativeButton("No", (dialog, which) -> {
 
@@ -140,32 +143,10 @@ public class RacePlayingFragment extends BaseFragmentMvp<FragmentRacePlayingBind
     }
 
     private void checkList(){
-        if(carArrayList.size() == 0){
+        if(presenter.getListCar().size() == 0){
             binding.tvThongBaoSLXe.setVisibility(View.VISIBLE);
         }else {
             binding.tvThongBaoSLXe.setVisibility(View.INVISIBLE);
         }
-    }
-    private void getDataCar(){
-        carArrayList.clear();
-        Cursor data = sqLiteHelper.GetData("SELECT * FROM Car1 WHERE IdRace = '"+race.getIdRace()+"'");
-        while(data.moveToNext()){
-            int id = data.getInt(3);
-            String name = data.getString(4);
-            String racer = data.getString(5);
-            int lv = data.getInt(6);
-            String start = data.getString(7);
-            String ss1 = data.getString(8);
-            String ss2 = data.getString(9);
-            String ss3 = data.getString(10);
-            String ss4 = data.getString(11);
-            String ss5 = data.getString(12);
-            String ss6 = data.getString(13);
-            String stop = data.getString(14);
-            if(lv != 0 ){
-                carArrayList.add(new Car(id,name,racer,lv,start,ss1,ss2,ss3,ss4,ss5,ss6,stop));
-            }
-        }
-        binding.rvCarPlaying.getAdapter().notifyDataSetChanged();
     }
 }
