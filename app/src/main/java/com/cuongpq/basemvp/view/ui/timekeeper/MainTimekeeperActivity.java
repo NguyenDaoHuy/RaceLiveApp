@@ -1,6 +1,7 @@
 package com.cuongpq.basemvp.view.ui.timekeeper;
 
 import android.annotation.SuppressLint;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -14,6 +15,7 @@ import com.cuongpq.basemvp.view.ui.timekeeper.TKlistrace.ListRaceTimekeeperFragm
 public class MainTimekeeperActivity extends BaseActivity<ActivityMainTimekeeperBinding> {
 
     private Member member;
+    private long backPressTime;
 
     @Override
     protected void initView() {
@@ -52,5 +54,29 @@ public class MainTimekeeperActivity extends BaseActivity<ActivityMainTimekeeperB
             }
             return false;
         });
+    }
+    @Override
+    public void onBackPressed() {
+//        AlertDialog alertDialog=new AlertDialog.Builder(this)
+//                .setTitle("Confirm Exit")
+//                .setMessage("Are you sure exit app ?")
+//                .setPositiveButton("Yes", (dialog, which) -> {
+//                    finishAffinity();
+//                    System.exit(0);
+//                    return;
+//                })
+//                .setNegativeButton("No", (dialog, which) -> {
+//
+//                })
+//                .create();
+//        alertDialog.show();
+        if(backPressTime +2000 > System.currentTimeMillis()){
+            finishAffinity();
+            System.exit(0);
+            return;
+        }else {
+            Toast.makeText(this,"Pres back again to exit the application",Toast.LENGTH_SHORT).show();
+        }
+        backPressTime = System.currentTimeMillis();
     }
 }
